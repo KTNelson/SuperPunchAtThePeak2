@@ -1,0 +1,3 @@
+cos(x) -->wave 1
+cos(x) * sin(x)^2--> wave2
+sin(x^2) + (2 *sin(x*2)) -->wave 3
