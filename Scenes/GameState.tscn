@@ -12,7 +12,7 @@ loop = true
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/pos")
-tracks/0/interp = 1
+tracks/0/interp = 2
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.6, 1, 2.5, 3, 4.4, 5, 6.7, 7.9, 8.9, 10, 11.5, 12.8, 13.3, 13.7, 15, 16.2, 16.6, 17, 18.6, 19.5, 20 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 6.13867, 604.047 ), Vector2( 28.9963, 528.18 ), Vector2( 61.3869, 483.729 ), Vector2( 128.229, 549.892 ), Vector2( 157.37, 567.046 ), Vector2( 226.323, 569.649 ), Vector2( 254.824, 581.266 ), Vector2( 328.464, 654.737 ), Vector2( 386.715, 687.789 ), Vector2( 448.181, 657.902 ), Vector2( 491.095, 606.502 ), Vector2( 553.141, 527.048 ), Vector2( 634.914, 469.388 ), Vector2( 668.224, 480.871 ), Vector2( 694.872, 509.858 ), Vector2( 749.7, 609.869 ), Vector2( 807.556, 732.558 ), Vector2( 839.054, 758.787 ), Vector2( 858.663, 747.968 ), Vector2( 947.102, 614.691 ), Vector2( 993.724, 634.954 ), Vector2( 1019.63, 605.767 ) ] }
 
@@ -22,24 +22,25 @@ script/script = ExtResource( 1 )
 
 [node name="Sprite" type="Sprite" parent="."]
 
-transform/pos = Vector2( 512.878, 618.129 )
+transform/pos = Vector2( 512.878, 617.129 )
 transform/scale = Vector2( 1.2781, 0.606626 )
 texture = ExtResource( 2 )
 
-[node name="Sprite 2" type="Sprite" parent="."]
+[node name="Sprite 2" type="Sprite" parent="Sprite"]
 
-transform/pos = Vector2( 85.4603, 507.558 )
-transform/scale = Vector2( 0.277107, 0.25 )
+transform/pos = Vector2( 393.991, -10.8821 )
+transform/scale = Vector2( 0.216812, 0.412116 )
 texture = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite 2"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Sprite 2"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/wave_1 = SubResource( 1 )
+next/wave_1 = ""
 playback/active = true
-playback/speed = 1.0
+playback/speed = 10.0
 blend_times = [  ]
 autoplay = "wave_1"
 

@@ -18,6 +18,6 @@ func _fixed_process(delta):
 	
 	if(timer > 100):
 		var game_node = get_node("./../")
-		game_node.setScene("res://Scenes/GoodEndState.tscn")
+		#game_node.setScene("res://Scenes/GoodEndState.tscn")
 	pass
 
