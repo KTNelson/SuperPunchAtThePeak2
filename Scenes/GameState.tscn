@@ -1,47 +1,212 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=17 format=1]
 
 [ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
-[ext_resource path="res://Assets/PNG/wave_3.png" type="Texture" id=2]
-[ext_resource path="res://Assets/PNG/marker.png" type="Texture" id=3]
+[ext_resource path="res://Assets/PNG/hilltop.png" type="Texture" id=2]
+[ext_resource path="res://Assets/PNG/leftbot_legs_coloured.png" type="Texture" id=3]
+[ext_resource path="res://Assets/PNG/leftbot_torso_coloured.png" type="Texture" id=4]
+[ext_resource path="res://Assets/PNG/leftbot_shoulder.png" type="Texture" id=5]
+[ext_resource path="res://Assets/PNG/leftbot_forearm.png" type="Texture" id=6]
+[ext_resource path="res://Assets/PNG/leftbot_fist.png" type="Texture" id=7]
+[ext_resource path="res://Assets/PNG/rightbot_legs_coloured.png" type="Texture" id=8]
+[ext_resource path="res://Assets/PNG/rightbot_torso_coloured.png" type="Texture" id=9]
+[ext_resource path="res://Assets/PNG/rightbot_shoulder.png" type="Texture" id=10]
+[ext_resource path="res://Assets/PNG/rightbot_forearm.png" type="Texture" id=11]
+[ext_resource path="res://Assets/PNG/rightbot_fist.png" type="Texture" id=12]
 
 [sub_resource type="Animation" id=1]
 
-resource/name = "wave_1"
-length = 20.0
-loop = true
+resource/name = "Punch"
+length = 1.0
+loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:transform/pos")
-tracks/0/interp = 2
+tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.6, 1, 2.5, 3, 4.4, 5, 6.7, 7.9, 8.9, 10, 11.5, 12.8, 13.3, 13.7, 15, 16.2, 16.6, 17, 18.6, 19.5, 20 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 6.13867, 604.047 ), Vector2( 28.9963, 528.18 ), Vector2( 61.3869, 483.729 ), Vector2( 128.229, 549.892 ), Vector2( 157.37, 567.046 ), Vector2( 226.323, 569.649 ), Vector2( 254.824, 581.266 ), Vector2( 328.464, 654.737 ), Vector2( 386.715, 687.789 ), Vector2( 448.181, 657.902 ), Vector2( 491.095, 606.502 ), Vector2( 553.141, 527.048 ), Vector2( 634.914, 469.388 ), Vector2( 668.224, 480.871 ), Vector2( 694.872, 509.858 ), Vector2( 749.7, 609.869 ), Vector2( 807.556, 732.558 ), Vector2( 839.054, 758.787 ), Vector2( 858.663, 747.968 ), Vector2( 947.102, 614.691 ), Vector2( 993.724, 634.954 ), Vector2( 1019.63, 605.767 ) ] }
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( -3.15095, 103.968 ), Vector2( 1.7955, 126.469 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/rot")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 12.6802, 9.75053 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:transform/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( -10.2784, 8.4481 ), Vector2( -1.46671, 30.1583 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:transform/rot")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 34.7333, 21.6645 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("../..:transform/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 3.86875, -131.544 ), Vector2( 17.4515, -126.853 ) ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("../..:transform/rot")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ -1.57247, 62.5194 ] }
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "RedHit"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../..:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.61817, 96.4932 ] }
+
+[sub_resource type="Animation" id=4]
+
+resource/name = "BlueHit"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath("../../..:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -95.6485 ] }
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "BluePunch"
+length = 1.0
+loop = false
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( -3.37021, 103.122 ), Vector2( -4.86223, 118.267 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:transform/rot")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -10.9846 ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("..:transform/pos")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( -4.43743, 44.7807 ), Vector2( -11.7674, 51.89 ) ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("..:transform/rot")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ -23.059, -77.4246 ] }
+tracks/4/type = "value"
+tracks/4/path = NodePath("../..:transform/pos")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( 5.2735, -154.506 ), Vector2( 3.86232, -156.045 ) ] }
+tracks/5/type = "value"
+tracks/5/path = NodePath("../..:transform/rot")
+tracks/5/interp = 1
+tracks/5/imported = false
+tracks/5/keys = { "times":FloatArray( 0, 1 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -0.370133 ] }
 
 [node name="GameState" type="Node2D"]
 
 script/script = ExtResource( 1 )
 
-[node name="Sprite" type="Sprite" parent="."]
+[node name="Background" type="Sprite" parent="."]
 
-transform/pos = Vector2( 512.878, 617.129 )
-transform/scale = Vector2( 1.2781, 0.606626 )
 texture = ExtResource( 2 )
+centered = false
 
-[node name="Sprite 2" type="Sprite" parent="Sprite"]
+[node name="Redbot" type="Sprite" parent="."]
 
-transform/pos = Vector2( 393.991, -10.8821 )
-transform/scale = Vector2( 0.216812, 0.412116 )
+transform/pos = Vector2( 411.494, 511.225 )
 texture = ExtResource( 3 )
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite/Sprite 2"]
+[node name="RedbotBody" type="Sprite" parent="Redbot"]
+
+transform/pos = Vector2( 13.4266, -94.5746 )
+transform/rot = 0.61817
+texture = ExtResource( 4 )
+offset = Vector2( 14.9014, -173.233 )
+__meta__ = { "_edit_ik_":true }
+
+[node name="RedbotShoulder" type="Sprite" parent="Redbot/RedbotBody"]
+
+transform/pos = Vector2( 3.86875, -131.544 )
+transform/rot = -1.57247
+texture = ExtResource( 5 )
+__meta__ = { "_edit_ik_":true }
+
+[node name="RedbotForeArm" type="Sprite" parent="Redbot/RedbotBody/RedbotShoulder"]
+
+transform/pos = Vector2( -10.2784, 8.4481 )
+transform/rot = 34.7333
+texture = ExtResource( 6 )
+offset = Vector2( 3.46884, 63.8226 )
+
+[node name="RedbotFist" type="Sprite" parent="Redbot/RedbotBody/RedbotShoulder/RedbotForeArm"]
+
+transform/pos = Vector2( -3.15095, 103.968 )
+transform/rot = 12.6802
+transform/scale = Vector2( 1, 1 )
+texture = ExtResource( 7 )
+offset = Vector2( 9.60455, 39.0193 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/wave_1 = SubResource( 1 )
-next/wave_1 = ""
+anims/Punch = SubResource( 1 )
+anims/RedHit = SubResource( 2 )
 playback/active = true
-playback/speed = 10.0
+playback/speed = 5.0
 blend_times = [  ]
-autoplay = "wave_1"
+autoplay = "Punch"
+
+[node name="Bluebot1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 700.794, 511.264 )
+texture = ExtResource( 8 )
+
+[node name="BluebotBody" type="Sprite" parent="Bluebot1"]
+
+transform/pos = Vector2( 0.224915, -88.2683 )
+texture = ExtResource( 9 )
+offset = Vector2( 4.88617, -178.795 )
+
+[node name="BluebotShoulder" type="Sprite" parent="Bluebot1/BluebotBody"]
+
+transform/pos = Vector2( 5.2735, -154.506 )
+texture = ExtResource( 10 )
+offset = Vector2( 1.08197, 24.7987 )
+
+[node name="BluebotForeArm" type="Sprite" parent="Bluebot1/BluebotBody/BluebotShoulder"]
+
+transform/pos = Vector2( -4.43743, 44.7807 )
+transform/rot = -23.059
+texture = ExtResource( 11 )
+offset = Vector2( -0.467931, 51.2205 )
+
+[node name="BluebotFist" type="Sprite" parent="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm"]
+
+transform/pos = Vector2( -3.37021, 103.122 )
+texture = ExtResource( 12 )
+offset = Vector2( -4.19332, 33.8917 )
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/BlueHit = SubResource( 4 )
+anims/BluePunch = SubResource( 3 )
+playback/active = true
+playback/speed = 5.0
+blend_times = [  ]
+autoplay = ""
 
 
