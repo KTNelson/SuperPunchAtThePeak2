@@ -1,12 +1,14 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://Audio/321Fight16.smp" type="Sample" id=1]
 [ext_resource path="res://Audio/SFX/Blastwave_FX_ExplosionMetalDebris_HV.243.wav" type="Sample" id=2]
 [ext_resource path="res://Audio/Explosion4.smp" type="Sample" id=3]
 [ext_resource path="res://Audio/Explosion7.smp" type="Sample" id=4]
 [ext_resource path="res://Audio/Powerup.smp" type="Sample" id=5]
-[ext_resource path="res://Audio/intro16.smp" type="Sample" id=6]
-[ext_resource path="res://Audio/test_wav1.smp" type="Sample" id=7]
+[ext_resource path="res://Audio/bluebotwins16.smp" type="Sample" id=6]
+[ext_resource path="res://Audio/intro16.smp" type="Sample" id=7]
+[ext_resource path="res://Audio/redbotwins16.smp" type="Sample" id=8]
+[ext_resource path="res://Audio/test_wav1.smp" type="Sample" id=9]
 
 [sub_resource type="SampleLibrary" id=1]
 
@@ -15,8 +17,10 @@ samples/Blastwave_FX_ExplosionMetalDebris_HV.243 = { "db":10.0, "pitch":1.0, "sa
 samples/Explosion4 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 3 ) }
 samples/Explosion7 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 4 ) }
 samples/Powerup = { "db":0.0, "pitch":1.0, "sample":ExtResource( 5 ) }
-samples/intro16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
-samples/test_wav1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/bluebotwins16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 6 ) }
+samples/intro16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 7 ) }
+samples/redbotwins16 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 8 ) }
+samples/test_wav1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
 
 [node name="SPlayer" type="SamplePlayer"]
 
