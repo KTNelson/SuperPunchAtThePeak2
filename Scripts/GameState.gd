@@ -49,7 +49,7 @@ func play_sound(sound):
 	elif(sound == "redbotwin"):
 		sp_node.play("redbotwins16")
 	elif(sound == "bluebotwin"):
-		sp_node.play("bluebotwins")
+		sp_node.play("bluebotwins16")
 	elif(sound == "321fight"):
 		sp_node.play("321Fight16")
 	elif(sound =="z"):
