@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://Scripts/StartState.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/title_background.png" type="Texture" id=2]
 [ext_resource path="res://Fonts/Title_Font.fnt" type="BitmapFont" id=3]
 [ext_resource path="res://Fonts/Main_Font_Medium.fnt" type="BitmapFont" id=4]
+[ext_resource path="res://Scenes/SPlayer.tscn" type="PackedScene" id=5]
 
 [node name="StartState" type="Node2D"]
 
@@ -64,6 +65,8 @@ align = 1
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="SPlayer" parent="." instance=ExtResource( 5 )]
 
 [connection signal="pressed" from="Button" to="." method="_on_Button_pressed"]
 
