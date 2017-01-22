@@ -200,7 +200,7 @@ tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 )
 
 [sub_resource type="Animation" id=8]
 
-length = 0.1
+length = 0.15
 loop = false
 step = 0.05
 tracks/0/type = "value"
@@ -276,6 +276,7 @@ __meta__ = { "_edit_ik_":true }
 
 [node name="RedbotShoulder" type="Sprite" parent="Redbot/RedbotBody"]
 
+editor/display_folded = true
 transform/pos = Vector2( 17.4515, -126.853 )
 texture = ExtResource( 6 )
 __meta__ = { "_edit_ik_":true }
@@ -353,7 +354,6 @@ texture = ExtResource( 9 )
 
 [node name="Bluebot1" type="Sprite" parent="."]
 
-editor/display_folded = true
 transform/pos = Vector2( 700.794, 511.264 )
 texture = ExtResource( 10 )
 script/script = ExtResource( 11 )
@@ -366,12 +366,14 @@ offset = Vector2( 4.88617, -178.795 )
 
 [node name="BluebotShoulder" type="Sprite" parent="Bluebot1/BluebotBody"]
 
+editor/display_folded = true
 transform/pos = Vector2( 3.86232, -156.045 )
 texture = ExtResource( 13 )
 offset = Vector2( 1.08197, 24.7987 )
 
 [node name="BluebotForeArm" type="Sprite" parent="Bluebot1/BluebotBody/BluebotShoulder"]
 
+editor/display_folded = true
 transform/pos = Vector2( -11, 51 )
 transform/rot = -77.4246
 texture = ExtResource( 14 )
@@ -379,6 +381,7 @@ offset = Vector2( -0.467931, 51.2205 )
 
 [node name="BluebotFist" type="Sprite" parent="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm"]
 
+editor/display_folded = true
 transform/pos = Vector2( -4.86223, 118.267 )
 transform/rot = -10.9846
 texture = ExtResource( 15 )
@@ -417,6 +420,27 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="BlueSparks1" type="Sprite" parent="Bluebot1/BluebotBody"]
+
+visibility/visible = false
+transform/pos = Vector2( 57.279, -3.01472 )
+transform/rot = 14.6325
+texture = ExtResource( 9 )
+
+[node name="BlueSparks2" type="Sprite" parent="Bluebot1/BluebotBody"]
+
+visibility/visible = false
+transform/pos = Vector2( -85.9185, -134.153 )
+transform/rot = -115.353
+texture = ExtResource( 9 )
+
+[node name="BlueSparks3" type="Sprite" parent="Bluebot1/BluebotBody"]
+
+visibility/visible = false
+transform/pos = Vector2( 96.4698, -171.837 )
+transform/rot = 123.715
+texture = ExtResource( 9 )
 
 [node name="Wave" type="Sprite" parent="."]
 
