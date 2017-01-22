@@ -9,7 +9,7 @@ func _ready():
 	# Initialization here
 	pass
 
-func takeDamage():
+func take_damage():
 	get_node("RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("RedHit")
 	print("Red takes damage")
 	

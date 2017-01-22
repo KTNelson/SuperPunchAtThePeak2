@@ -18,6 +18,9 @@ var blue_attempts = []
 
 var game_round = 1
 
+var red_charge = 0
+var blue_charge = 0
+
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
@@ -27,16 +30,53 @@ func _ready():
 	pass
 
 func _input(event):
-	if event.is_action_pressed("on_spacebar_hit"):
-		print("SpaceBar")
-		add_attempt()
+	#if event.is_action_pressed("on_spacebar_hit"):
+	#	print("SpaceBar")
+	#	add_attempt()
+	
+	if event.is_action_pressed("on_z_hit"):
+		print("z")
+		add_charge("Red")
+		
+	if event.is_action_pressed("on_m_hit"):
+		print("m")
+		add_charge("Blue")
+	pass
+
+func add_charge(colour):
+	var marker_node = get_node("./Table/Marker")
+	var marker_y = abs(marker_node.get_pos().y)
+	#marker_y = int(marker_y / 50)
+	marker_y = 1
+	if(colour == "Red"):
+		red_charge = red_charge + marker_y
+		if(red_charge == 100):
+			red_charge = 101
+	else:
+		blue_charge = blue_charge + marker_y
+		if(blue_charge == 100):
+			blue_charge = 101
+	
 	pass
 
 func _fixed_process(delta):
-	#if(Input.is_action_pressed(("on_spacebar_hit")):
-		#print("SpaceBar")
-		#add_attempt()
+	if(Input.is_action_pressed("on_z_hit")):
+		print("z")
+		add_charge("Red")
+	else:
+		red_charge = red_charge - 1
+		if(red_charge < 0):
+			red_charge = 0
+	if(Input.is_action_pressed("on_m_hit")):
+		print("m")
+		add_charge("Blue")
+	else:
+		blue_charge = blue_charge - 1
+		if(blue_charge < 0):
+			blue_charge = 0
 		
+	get_node("RedCharge").set_text(str(red_charge))
+	get_node("BlueCharge").set_text(str(blue_charge))
 	pass
 
 func add_attempt():
@@ -67,6 +107,24 @@ func calculate_winner():
 		print("Blue")
 		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("RedHit")
 		return "Blue"
+	pass
+	
+func calculate_charge_winner():
+	print("Calculate Charge Winner")
+	var winner = ""
+	if(red_charge > 100):
+		winner = "Blue"
+	elif(blue_charge > 100):
+		winner = "Red"
+	elif(red_charge > blue_charge):
+		winner = "Blue"
+	else:
+		winner = "Red"
+	print(winner)
+	if(winner == "Blue"):
+		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BluePunch")
+	else:
+		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("Punch")
 	pass
 
 func calc_attempt_blue(attempt_x):

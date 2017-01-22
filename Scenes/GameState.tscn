@@ -54,18 +54,23 @@ tracks/5/path = NodePath("../..:transform/rot")
 tracks/5/interp = 1
 tracks/5/imported = false
 tracks/5/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ -1.57247, 0.0 ] }
+tracks/6/type = "method"
+tracks/6/path = NodePath("../../../../../Bluebot1")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0.3 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"take_damage" } ] }
 
 [sub_resource type="Animation" id=2]
 
 resource/name = "RedHit"
-length = 1.0
+length = 1.5
 loop = false
 step = 0.1
 tracks/0/type = "value"
 tracks/0/path = NodePath("../../..:transform/rot")
 tracks/0/interp = 1
 tracks/0/imported = false
-tracks/0/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.61817, 96.4932 ] }
+tracks/0/keys = { "times":FloatArray( 0, 0.5, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.61817, 96.4932, 0.61817 ] }
 
 [sub_resource type="Animation" id=3]
 
@@ -114,6 +119,11 @@ tracks/5/path = NodePath("../..:transform/rot")
 tracks/5/interp = 1
 tracks/5/imported = false
 tracks/5/keys = { "times":FloatArray( 0, 0.3 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ 0.0, -0.370133 ] }
+tracks/6/type = "method"
+tracks/6/path = NodePath("../../../../../Redbot")
+tracks/6/interp = 1
+tracks/6/imported = false
+tracks/6/keys = { "times":FloatArray( 0.3 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"take_damage" } ] }
 
 [sub_resource type="Animation" id=5]
 
@@ -130,7 +140,7 @@ tracks/1/type = "method"
 tracks/1/path = NodePath("../..")
 tracks/1/interp = 1
 tracks/1/imported = false
-tracks/1/keys = { "times":FloatArray( 5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"calculate_winner" } ] }
+tracks/1/keys = { "times":FloatArray( 5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"calculate_charge_winner" } ] }
 
 [node name="GameState" type="Node2D"]
 
@@ -268,5 +278,33 @@ transform/pos = Vector2( 42.706, -68.0604 )
 transform/pos = Vector2( 8.29823, 0 )
 transform/scale = Vector2( 26.2881, 1 )
 __meta__ = { "_edit_lock_":true }
+
+[node name="RedCharge" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 405.0
+margin/top = 129.0
+margin/right = 445.0
+margin/bottom = 143.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
+[node name="BlueCharge" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 692.0
+margin/top = 132.0
+margin/right = 732.0
+margin/bottom = 146.0
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
 
 

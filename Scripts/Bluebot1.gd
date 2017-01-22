@@ -9,7 +9,7 @@ func _ready():
 	# Initialization here
 	pass
 
-func takeDamage():
+func take_damage():
 	get_node("BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BlueHit")
 	print("Blue takes damage")
 	
