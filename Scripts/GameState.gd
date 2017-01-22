@@ -1,9 +1,6 @@
 extends Node2D
 
 # class member variables go here, for example:
-# var a = 2
-# var b = "textvar"
-
 var red_goals = { 1: [
 Vector3(-170,-128,-85), 
 Vector3(0,42,85),
@@ -50,8 +47,11 @@ func add_charge(colour, marker_y):
 	pass
 
 func play_sound(sound):
-	var sp_node = get_node("SamplePlayer")
-	sp_node.play(sound) 
+	var sp_node = get_node("SPlayer")
+	if(sound == "a"):
+		sp_node.play("Powerup")
+	elif(sound == "b"):
+		sp_node.play("Explosion4")
 	pass
 	
 	
@@ -79,43 +79,13 @@ func _input(event):
 			add_charge("Red", 3)
 			add_charge("Blue", -3)
 			get_node("Redbot/RedbotBody/ShakePlayer").play("Shake")
-			play_sound("test_wav_1.smp")
+			play_sound("a")
 		else:
 			add_charge("Blue", 3)
 			add_charge("Red", -3)
 			get_node("Bluebot1/BluebotBody/ShakePlayer").play("Shake")
-			play_sound("test_wav_1.smp")
+			play_sound("b")
 
-func add_attempt():
-	#get marker y
-	var marker_node = get_node("./Table/Marker")
-	var marker_y = marker_node.get_pos().y
-	var attempt_x = marker_node.get_pos().x
-	if  (marker_y < 0):
-		print("Hit Red")
-		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("Punch")
-		calc_attempt_red(attempt_x)
-	else:
-		print("Hit Blue")
-		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BluePunch")
-		calc_attempt_blue(attempt_x)
-	
-func calculate_winner():
-	print("Calculate Winner")
-	var red_score = get_score("Red")
-	print("Red Score:" + str(red_score))
-	var blue_score = get_score("Blue")
-	print("Blue Score:" + str(blue_score))
-	if(red_score < blue_score):
-		print("Red")
-		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BlueHit")
-		return "Red"
-	else:
-		print("Blue")
-		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("RedHit")
-		return "Blue"
-	pass
-	
 func calculate_charge_winner():
 	print("Calculate Charge Winner")
 	var winner = ""
@@ -134,22 +104,6 @@ func calculate_charge_winner():
 		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("Punch")
 	pass
 
-func calc_attempt_blue(attempt_x):
-	var goal_array = blue_goals[game_round]
-	for hit in goal_array:
-		if(attempt_x >= hit.x && attempt_x < hit.z):
-			print(str(abs(hit.y - attempt_x)))
-			blue_attempts.append(abs(hit.y - attempt_x))
-		
-	pass
-
-func calc_attempt_red(attempt_x):
-	var goal_array = red_goals[game_round]
-	for hit in goal_array:
-		if(attempt_x >= hit.x && attempt_x < hit.z):
-			print(str(abs(hit.y - attempt_x)))
-			red_attempts.append(abs(hit.y - attempt_x))
-		
 
 func get_score(colour):
 	var attempts = []

@@ -14,3 +14,8 @@ func take_damage():
 	print("Red takes damage")
 	
 	pass
+	
+func hide_sparks():
+	get_node("RedbotBody/RedSparks1").hide()
+	get_node("RedbotBody/RedSparks2").hide()
+	get_node("RedbotBody/RedSparks3").hide()
