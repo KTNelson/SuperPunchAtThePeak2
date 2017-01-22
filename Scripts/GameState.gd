@@ -26,7 +26,6 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	get_node("Countdown/COUNT").play("count")
-	get_node("Table/Marker/AnimationPlayer").play("MarkerWave")
 	get_node("RedChargeBar").set_value(red_charge)
 	get_node("BlueChargeBar").set_value(blue_charge)
 	set_process_input(true)
@@ -53,6 +52,10 @@ func _fixed_process(delta):
 	if(game_state == "Intro"):
 		get_node("Table/Marker/AnimationPlayer").play("MarkerWave")
 		game_state = "Play"
+	
+	if(game_state == "Game_Reset"):
+		get_node("Countdown/COUNT").play("count")
+		game_state = "Restarting"
 	
 	if(game_state == "Play"):
 		if(Input.is_action_pressed("on_z_hit")):
@@ -157,6 +160,6 @@ func reset_game():
 	
 func _on_AnimationPlayer_finished():
 	reset_game();
-	game_state = "Start"
-	get_node("Countdown/COUNT").play("count")
+	if(game_state != "Restarting"):
+		game_state = "Game_Reset"
 	pass # replace with function body
