@@ -19,8 +19,8 @@ var blue_attempts = []
 var game_round = 1
 var game_state = "Start"
 
-var red_charge = 0
-var blue_charge = 0
+var red_charge = 50
+var blue_charge = 50
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -58,19 +58,22 @@ func _fixed_process(delta):
 		game_state = "Restarting"
 	
 	if(game_state == "Play"):
-		if(Input.is_action_pressed("on_z_hit")):
-			add_charge("Red", 1)
-		else:
-			add_charge("Red", -1)
-		if(Input.is_action_pressed("on_m_hit")):
-			add_charge("Blue", 1)
-		else:
-			add_charge("Blue", -1)
 		get_node("RedCharge").set_text(str(red_charge))
 		get_node("RedChargeBar").set_value(red_charge)
 		get_node("BlueChargeBar").set_value(blue_charge)
 		get_node("BlueCharge").set_text(str(blue_charge))	
 		pass
+
+func _input(event):
+	if(event.is_action_pressed("on_spacebar_hit") && game_state == "Play"):
+		var marker_node = get_node("./Table/Marker")
+		var marker_y = marker_node.get_pos().y
+		if  (marker_y < 0):
+			add_charge("Red", 3)
+			add_charge("Blue", -3)
+		else:
+			add_charge("Blue", 3)
+			add_charge("Red", -3)
 
 func add_attempt():
 	#get marker y
@@ -154,8 +157,8 @@ func _on_COUNT_finished():
 func reset_game():
 	red_attempts = []
 	blue_attempts = []
-	red_charge = 0
-	blue_charge = 0
+	red_charge = 50
+	blue_charge = 50
 	
 	
 func _on_AnimationPlayer_finished():
