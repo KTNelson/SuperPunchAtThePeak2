@@ -208,6 +208,26 @@ tracks/0/path = NodePath(".:transform/pos")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0.224915, -88.2683 ), Vector2( 8.22491, -88.2683 ), Vector2( 0.224915, -88.2683 ) ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("BlueSparks1:visibility/visible")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ true, false, false ] }
+tracks/2/type = "value"
+tracks/2/path = NodePath("BlueSparks2:visibility/visible")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ false, true, false ] }
+tracks/3/type = "value"
+tracks/3/path = NodePath("BlueSparks3:visibility/visible")
+tracks/3/interp = 1
+tracks/3/imported = false
+tracks/3/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":1, "values":[ false, false, true ] }
+tracks/4/type = "method"
+tracks/4/path = NodePath("..")
+tracks/4/interp = 1
+tracks/4/imported = false
+tracks/4/keys = { "times":FloatArray( 0.15 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"hide_sparks" } ] }
 
 [sub_resource type="Animation" id=9]
 
@@ -276,25 +296,21 @@ __meta__ = { "_edit_ik_":true }
 
 [node name="RedbotShoulder" type="Sprite" parent="Redbot/RedbotBody"]
 
-editor/display_folded = true
-transform/pos = Vector2( 17.4515, -126.853 )
-transform/rot = 90.4887
+transform/pos = Vector2( 3.86875, -131.544 )
 texture = ExtResource( 6 )
 __meta__ = { "_edit_ik_":true }
 
 [node name="RedbotForeArm" type="Sprite" parent="Redbot/RedbotBody/RedbotShoulder"]
 
-editor/display_folded = true
-transform/pos = Vector2( 27.8298, -0.0395851 )
-transform/rot = 83.7811
+transform/pos = Vector2( -1, 30 )
+transform/rot = 34.7333
 texture = ExtResource( 7 )
 offset = Vector2( 3.46884, 63.8226 )
 
 [node name="RedbotFist" type="Sprite" parent="Redbot/RedbotBody/RedbotShoulder/RedbotForeArm"]
 
-editor/display_folded = true
-transform/pos = Vector2( 2.01724, 128.73 )
-transform/rot = 8.63141
+transform/pos = Vector2( -3.15095, 103.968 )
+transform/rot = 12.6802
 texture = ExtResource( 8 )
 offset = Vector2( 9.60455, 39.0193 )
 
@@ -367,24 +383,20 @@ offset = Vector2( 4.88617, -178.795 )
 
 [node name="BluebotShoulder" type="Sprite" parent="Bluebot1/BluebotBody"]
 
-editor/display_folded = true
-transform/pos = Vector2( 3.86232, -156.045 )
+transform/pos = Vector2( 5.2735, -154.506 )
 texture = ExtResource( 13 )
 offset = Vector2( 1.08197, 24.7987 )
 
 [node name="BluebotForeArm" type="Sprite" parent="Bluebot1/BluebotBody/BluebotShoulder"]
 
-editor/display_folded = true
-transform/pos = Vector2( -11, 51 )
-transform/rot = -77.4246
+transform/pos = Vector2( -4.43743, 44.7807 )
+transform/rot = -23.059
 texture = ExtResource( 14 )
 offset = Vector2( -0.467931, 51.2205 )
 
 [node name="BluebotFist" type="Sprite" parent="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm"]
 
-editor/display_folded = true
-transform/pos = Vector2( -4.86223, 118.267 )
-transform/rot = -10.9846
+transform/pos = Vector2( -3.37021, 103.122 )
 texture = ExtResource( 15 )
 offset = Vector2( -4.19332, 33.8917 )
 

@@ -14,3 +14,8 @@ func take_damage():
 	print("Blue takes damage")
 	
 	pass
+	
+func hide_sparks():
+	get_node("BluebotBody/BlueSparks1").hide()
+	get_node("BluebotBody/BlueSparks2").hide()
+	get_node("BluebotBody/BlueSparks3").hide()
