@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=1]
+[gd_scene load_steps=29 format=1]
 
 [ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/hilltop.png" type="Texture" id=2]
@@ -17,7 +17,11 @@
 [ext_resource path="res://Assets/PNG/track.png" type="Texture" id=15]
 [ext_resource path="res://Assets/PNG/wave_1.png" type="Texture" id=16]
 [ext_resource path="res://Assets/PNG/marker.png" type="Texture" id=17]
-[ext_resource path="res://Fonts/Main_Font_XLl.fnt" type="BitmapFont" id=18]
+[ext_resource path="res://Fonts/Main_Font_Small.fnt" type="BitmapFont" id=18]
+[ext_resource path="res://Fonts/Main_Font_XLl.fnt" type="BitmapFont" id=19]
+[ext_resource path="res://Assets/PNG/radial_under.png" type="Texture" id=20]
+[ext_resource path="res://Assets/PNG/radial_over.png" type="Texture" id=21]
+[ext_resource path="res://Assets/PNG/radial_progress.png" type="Texture" id=22]
 
 [sub_resource type="Animation" id=1]
 
@@ -181,6 +185,7 @@ centered = false
 
 [node name="Redbot" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 411.494, 511.225 )
 texture = ExtResource( 3 )
 script/script = ExtResource( 4 )
@@ -227,6 +232,7 @@ autoplay = ""
 
 [node name="Bluebot1" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 700.794, 511.264 )
 texture = ExtResource( 9 )
 script/script = ExtResource( 10 )
@@ -272,6 +278,7 @@ autoplay = ""
 
 [node name="Table" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 512, 690 )
 texture = ExtResource( 15 )
 __meta__ = { "_edit_lock_":true }
@@ -321,6 +328,22 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="RedName" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 11.0
+margin/top = 61.0
+margin/right = 66.0
+margin/bottom = 93.0
+custom_fonts/font = ExtResource( 18 )
+text = "Red"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="BlueCharge" type="Label" parent="."]
 
 focus/ignore_mouse = true
@@ -335,8 +358,25 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
+[node name="BlueName" type="Label" parent="."]
+
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 928.0
+margin/top = 63.0
+margin/right = 989.0
+margin/bottom = 95.0
+custom_fonts/font = ExtResource( 18 )
+text = "Blue"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [node name="Countdown" type="Label" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -345,7 +385,7 @@ margin/left = -820.0
 margin/top = 241.0
 margin/right = -14.0
 margin/bottom = 491.0
-custom_fonts/font = ExtResource( 18 )
+custom_fonts/font = ExtResource( 19 )
 text = "FIGHT!"
 percent_visible = 1.0
 lines_skipped = 0
@@ -361,6 +401,53 @@ playback/active = true
 playback/speed = 0.5
 blend_times = [  ]
 autoplay = ""
+
+[node name="RedChargeBar" type="TextureProgress" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 2.0
+margin/top = 3.0
+margin/right = 352.0
+margin/bottom = 53.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+texture/under = ExtResource( 20 )
+texture/over = ExtResource( 21 )
+texture/progress = ExtResource( 22 )
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
+
+[node name="BlueChargeBar" type="TextureProgress" parent="."]
+
+focus/ignore_mouse = false
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 2
+margin/left = 648.0
+margin/top = 3.0
+margin/right = 998.0
+margin/bottom = 53.0
+range/min = 0.0
+range/max = 100.0
+range/step = 1.0
+range/page = 0.0
+range/value = 1.0
+range/exp_edit = false
+range/rounded = false
+texture/under = ExtResource( 20 )
+texture/over = ExtResource( 21 )
+texture/progress = ExtResource( 22 )
+mode = 1
+radial_fill/fill_degrees = 360.0
+radial_fill/center_offset = Vector2( 0, 0 )
 
 [connection signal="finished" from="Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 

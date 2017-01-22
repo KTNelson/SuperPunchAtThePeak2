@@ -26,38 +26,26 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	get_node("Countdown/COUNT").play("count")
+	get_node("Table/Marker/AnimationPlayer").play("MarkerWave")
+	get_node("RedChargeBar").set_value(red_charge)
+	get_node("BlueChargeBar").set_value(blue_charge)
 	set_process_input(true)
 	set_fixed_process(true)
 	pass
 
-func _input(event):
-	#if event.is_action_pressed("on_spacebar_hit"):
-	#	print("SpaceBar")
-	#	add_attempt()
-	
-	if event.is_action_pressed("on_z_hit"):
-		print("z")
-		add_charge("Red")
-		
-	if event.is_action_pressed("on_m_hit"):
-		print("m")
-		add_charge("Blue")
-	pass
-
-func add_charge(colour):
-	var marker_node = get_node("./Table/Marker")
-	var marker_y = abs(marker_node.get_pos().y)
-	#marker_y = int(marker_y / 50)
-	marker_y = 1
+func add_charge(colour, marker_y):
 	if(colour == "Red"):
 		red_charge = red_charge + marker_y
-		if(red_charge == 100):
+		if(red_charge >= 100):
 			red_charge = 101
+		elif(red_charge < 0):
+			red_charge = 0
 	else:
 		blue_charge = blue_charge + marker_y
-		if(blue_charge == 100):
+		if(blue_charge >= 100):
 			blue_charge = 101
-	
+		elif(blue_charge < 0):
+			blue_charge = 0
 	pass
 
 func _fixed_process(delta):
@@ -68,23 +56,18 @@ func _fixed_process(delta):
 	
 	if(game_state == "Play"):
 		if(Input.is_action_pressed("on_z_hit")):
-			print("z")
-			add_charge("Red")
+			add_charge("Red", 1)
 		else:
-			red_charge = red_charge - 1
-			if(red_charge < 0):
-				red_charge = 0
+			add_charge("Red", -1)
 		if(Input.is_action_pressed("on_m_hit")):
-			print("m")
-			add_charge("Blue")
+			add_charge("Blue", 1)
 		else:
-			blue_charge = blue_charge - 1
-			if(blue_charge < 0):
-				blue_charge = 0
-			
+			add_charge("Blue", -1)
 		get_node("RedCharge").set_text(str(red_charge))
-		get_node("BlueCharge").set_text(str(blue_charge))
-	pass
+		get_node("RedChargeBar").set_value(red_charge)
+		get_node("BlueChargeBar").set_value(blue_charge)
+		get_node("BlueCharge").set_text(str(blue_charge))	
+		pass
 
 func add_attempt():
 	#get marker y
@@ -124,9 +107,9 @@ func calculate_charge_winner():
 	elif(blue_charge > 100):
 		winner = "Red"
 	elif(red_charge > blue_charge):
-		winner = "Blue"
-	else:
 		winner = "Red"
+	else:
+		winner = "Blue"
 	print(winner)
 	if(winner == "Blue"):
 		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BluePunch")
@@ -168,6 +151,8 @@ func _on_COUNT_finished():
 func reset_game():
 	red_attempts = []
 	blue_attempts = []
+	red_charge = 0
+	blue_charge = 0
 	
 	
 func _on_AnimationPlayer_finished():
