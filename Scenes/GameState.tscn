@@ -1,4 +1,4 @@
-[gd_scene load_steps=36 format=1]
+[gd_scene load_steps=37 format=1]
 
 [ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/hilltop.png" type="Texture" id=2]
@@ -25,6 +25,7 @@
 [ext_resource path="res://Assets/PNG/radial_progress.png" type="Texture" id=23]
 [ext_resource path="res://Scenes/SPlayer.tscn" type="PackedScene" id=24]
 [ext_resource path="res://Fonts/Main_Font_Medium.fnt" type="BitmapFont" id=25]
+[ext_resource path="res://Audio/Music/Pump.ogg" type="AudioStream" id=26]
 
 [sub_resource type="Animation" id=1]
 
@@ -180,7 +181,7 @@ tracks/6/interp = 1
 tracks/6/imported = false
 tracks/6/keys = { "times":FloatArray( 0.3 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"take_damage" } ] }
 
-[sub_resource type="Animation" id=10]
+[sub_resource type="Animation" id=7]
 
 resource/name = "Win"
 length = 0.5
@@ -197,7 +198,7 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 0, 0.5 ), "transitions":FloatArray( 1, 1 ), "update":0, "values":[ Vector2( -11.7674, 51 ), Vector2( -41.3513, 28.3442 ) ] }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=8]
 
 length = 0.1
 loop = false
@@ -208,7 +209,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0.224915, -88.2683 ), Vector2( 8.22491, -88.2683 ), Vector2( 0.224915, -88.2683 ) ] }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=9]
 
 length = 5.0
 loop = false
@@ -224,7 +225,7 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"calculate_charge_winner" } ] }
 
-[sub_resource type="Animation" id=9]
+[sub_resource type="Animation" id=10]
 
 length = 2.0
 loop = false
@@ -345,12 +346,14 @@ texture = ExtResource( 9 )
 
 [node name="RedSparks3" type="Sprite" parent="Redbot/RedbotBody"]
 
+visibility/visible = false
 transform/pos = Vector2( 68.4815, -44.2638 )
 transform/rot = 41.4238
 texture = ExtResource( 9 )
 
 [node name="Bluebot1" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 700.794, 511.264 )
 texture = ExtResource( 10 )
 script/script = ExtResource( 11 )
@@ -398,7 +401,7 @@ autoplay = ""
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Win = SubResource( 10 )
+anims/Win = SubResource( 7 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -409,7 +412,7 @@ autoplay = ""
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Shake = SubResource( 7 )
+anims/Shake = SubResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -422,6 +425,7 @@ texture = ExtResource( 16 )
 
 [node name="Table" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 512, 690 )
 texture = ExtResource( 17 )
 __meta__ = { "_edit_lock_":true }
@@ -446,7 +450,7 @@ texture = ExtResource( 18 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/MarkerWave = SubResource( 8 )
+anims/MarkerWave = SubResource( 9 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -538,7 +542,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/count = SubResource( 9 )
+anims/count = SubResource( 10 )
 playback/active = true
 playback/speed = 0.5
 blend_times = [  ]
@@ -609,6 +613,17 @@ text = "Press Space to play again"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
+
+[node name="StreamPlayer" type="StreamPlayer" parent="."]
+
+stream/stream = ExtResource( 26 )
+stream/play = false
+stream/loop = true
+stream/volume_db = 10.0
+stream/autoplay = false
+stream/paused = false
+stream/loop_restart_time = 0.0
+stream/buffering_ms = 500
 
 [connection signal="finished" from="Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 

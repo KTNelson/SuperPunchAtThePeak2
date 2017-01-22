@@ -19,6 +19,7 @@ func _ready():
 	get_node("Countdown/COUNT").play("count")
 	get_node("RedChargeBar").set_value(red_charge)
 	get_node("BlueChargeBar").set_value(blue_charge)
+	get_node("StreamPlayer").play()
 	set_process_input(true)
 	set_fixed_process(true)
 	
