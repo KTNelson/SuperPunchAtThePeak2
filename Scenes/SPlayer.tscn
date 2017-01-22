@@ -24,7 +24,7 @@ samples/test_wav1 = { "db":0.0, "pitch":1.0, "sample":ExtResource( 9 ) }
 
 [node name="SPlayer" type="SamplePlayer"]
 
-config/polyphony = 20
+config/polyphony = 1000
 config/samples = SubResource( 1 )
 default/volume_db = 0.0
 default/pitch_scale = 1.0
