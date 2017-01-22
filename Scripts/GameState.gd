@@ -17,6 +17,7 @@ var red_attempts = []
 var blue_attempts = []
 
 var game_round = 1
+var game_state = "Start"
 
 var red_charge = 0
 var blue_charge = 0
@@ -24,7 +25,7 @@ var blue_charge = 0
 func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
-	get_node("Table/Marker/AnimationPlayer").play("MarkerWave")
+	get_node("Countdown/COUNT").play("count")
 	set_process_input(true)
 	set_fixed_process(true)
 	pass
@@ -60,23 +61,29 @@ func add_charge(colour):
 	pass
 
 func _fixed_process(delta):
-	if(Input.is_action_pressed("on_z_hit")):
-		print("z")
-		add_charge("Red")
-	else:
-		red_charge = red_charge - 1
-		if(red_charge < 0):
-			red_charge = 0
-	if(Input.is_action_pressed("on_m_hit")):
-		print("m")
-		add_charge("Blue")
-	else:
-		blue_charge = blue_charge - 1
-		if(blue_charge < 0):
-			blue_charge = 0
-		
-	get_node("RedCharge").set_text(str(red_charge))
-	get_node("BlueCharge").set_text(str(blue_charge))
+	
+	if(game_state == "Intro"):
+		get_node("Table/Marker/AnimationPlayer").play("MarkerWave")
+		game_state = "Play"
+	
+	if(game_state == "Play"):
+		if(Input.is_action_pressed("on_z_hit")):
+			print("z")
+			add_charge("Red")
+		else:
+			red_charge = red_charge - 1
+			if(red_charge < 0):
+				red_charge = 0
+		if(Input.is_action_pressed("on_m_hit")):
+			print("m")
+			add_charge("Blue")
+		else:
+			blue_charge = blue_charge - 1
+			if(blue_charge < 0):
+				blue_charge = 0
+			
+		get_node("RedCharge").set_text(str(red_charge))
+		get_node("BlueCharge").set_text(str(blue_charge))
 	pass
 
 func add_attempt():
@@ -154,4 +161,17 @@ func get_score(colour):
 	for attempt in attempts:
 		total_score = attempt + total_score
 	return total_score / red_goals[game_round].size()
+
+func _on_COUNT_finished():
+	game_state = "Intro"
 	
+func reset_game():
+	red_attempts = []
+	blue_attempts = []
+	
+	
+func _on_AnimationPlayer_finished():
+	reset_game();
+	game_state = "Start"
+	get_node("Countdown/COUNT").play("count")
+	pass # replace with function body

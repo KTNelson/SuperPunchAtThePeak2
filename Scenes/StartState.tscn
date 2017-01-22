@@ -48,7 +48,7 @@ percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
 
-[node name="Label" type="Label" parent="."]
+[node name="press start" type="Label" parent="."]
 
 focus/ignore_mouse = true
 focus/stop_mouse = true
@@ -59,7 +59,7 @@ margin/top = 558.0
 margin/right = 847.0
 margin/bottom = 634.0
 custom_fonts/font = ExtResource( 4 )
-text = "Press X or M to Start"
+text = "Press Z or M to Start"
 percent_visible = 1.0
 lines_skipped = 0
 max_lines_visible = -1
