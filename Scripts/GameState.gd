@@ -1,17 +1,6 @@
 extends Node2D
 
 # class member variables go here, for example:
-var red_goals = { 1: [
-Vector3(-170,-128,-85), 
-Vector3(0,42,85),
-Vector3(170, 214,256)]}
-var blue_goals = {1:[
-Vector3(0,-214,-170), 
-Vector3(-85,-42,0),
-Vector3(85, 128,170)]}
-
-var red_attempts = []
-var blue_attempts = []
 
 var game_round = 1
 var game_state = "Start"
@@ -19,6 +8,10 @@ var game_state = "Start"
 var red_charge = 50
 var blue_charge = 50
 var sp_node = null
+
+var red_round_wins = 0
+var blue_round_wins = 0
+var winner = "White"
 
 func _ready():
 	# Called every time the node is added to the scene.
@@ -85,49 +78,80 @@ func _input(event):
 			add_charge("Red", -3)
 			get_node("Bluebot1/BluebotBody/ShakePlayer").play("Shake")
 			play_sound("b")
+	if(event.is_action_pressed("on_spacebar_hit") && game_state == "New_Game_Request"):
+		reset_game()
+		get_node("PlayAgain").hide()
+		reset_arms()
+		game_state = "Game_Reset"
+	
+
+func reset_arms():
+	var blue_shoulder_node = get_node("Bluebot1/BluebotBody/BluebotShoulder");
+	blue_shoulder_node.set_rot(0)
+	var blue_forearm_node = get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm");
+	blue_forearm_node.set_pos(Vector2(-11,51))
+	var red_shoulder_node = get_node("Redbot/RedbotBody/RedbotShoulder");
+	red_shoulder_node.set_rot(0);
+	var red_forearm_node = get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm");
+	red_forearm_node.set_pos(Vector2(-1,30))
 
 func calculate_charge_winner():
 	print("Calculate Charge Winner")
 	var winner = ""
 	if(red_charge > 100):
 		winner = "Blue"
+		blue_round_wins += 1
 	elif(blue_charge > 100):
 		winner = "Red"
+		red_round_wins += 1
 	elif(red_charge > blue_charge):
 		winner = "Red"
+		red_round_wins += 1
 	else:
 		winner = "Blue"
+		blue_round_wins += 1
+		
 	print(winner)
 	if(winner == "Blue"):
 		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BluePunch")
 	else:
 		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("Punch")
-	pass
+	
+	if(red_round_wins == 2):
+		show_win("Red")
+	elif(blue_round_wins == 2):
+		show_win("Blue")
 
-
-func get_score(colour):
-	var attempts = []
-	if(colour == "Red"):
-		attempts = red_attempts
-	else:
-		attempts = blue_attempts
-	var total_score = 0
-	for attempt in attempts:
-		total_score = attempt + total_score
-	return total_score / red_goals[game_round].size()
+func show_win(colour):
+	print("show win!")
+	game_state = "Winning"
+	winner = colour
 
 func _on_COUNT_finished():
 	game_state = "Intro"
 	
 func reset_game():
-	red_attempts = []
-	blue_attempts = []
 	red_charge = 50
 	blue_charge = 50
 	
 	
 func _on_AnimationPlayer_finished():
-	reset_game();
-	if(game_state != "Restarting"):
+	if(game_state != "Restarting" && game_state != "Winning" && game_state != "New_Game_Request" && game_state != "Win Anims"):
+		print("setting game state to game_reset")
 		game_state = "Game_Reset"
-	pass # replace with function body
+		reset_game()
+	elif(game_state == "Winning"):
+		print("running winning anims")
+		game_state = "Win Anims"
+		if(winner == "Red"):
+			get_node("Redbot/RedbotBody/RedbotShoulder/Winning").play("Win")
+		elif(winner == "Blue"):
+			get_node("Bluebot1/BluebotBody/BluebotShoulder/Winning").play("Win")
+
+func _on_Winning_finished():
+	print("Winning finished")
+	game_state = "New_Game_Request"
+	red_round_wins = 0;
+	blue_round_wins = 0;
+	get_node("PlayAgain").show()
+	
