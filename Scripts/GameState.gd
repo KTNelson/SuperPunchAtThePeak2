@@ -22,7 +22,7 @@ func _ready():
 	get_node("StreamPlayer").play()
 	set_process_input(true)
 	set_fixed_process(true)
-	
+
 	pass
 
 func add_charge(colour, marker_y):
@@ -50,25 +50,27 @@ func play_sound(sound):
 		sp_node.play("redbotwins16")
 	elif(sound == "bluebotwin"):
 		sp_node.play("bluebotwins")
-	elif(sound == "321fight"): 
+	elif(sound == "321fight"):
 		sp_node.play("321Fight16")
+	elif(sound =="z"):
+		sp_node.play("Blastwave_FX_ExplosionMetalDebris_HV.243")
 	pass
-	
-	
+
+
 func _fixed_process(delta):
 	if(game_state == "Intro"):
 		get_node("Table/Marker/AnimationPlayer").play("MarkerWave")
 		game_state = "Play"
-	
+
 	if(game_state == "Game_Reset"):
 		get_node("Countdown/COUNT").play("count")
 		game_state = "Restarting"
-	
+
 	if(game_state == "Play"):
 		get_node("RedCharge").set_text(str(red_charge))
 		get_node("RedChargeBar").set_value(red_charge)
 		get_node("BlueChargeBar").set_value(blue_charge)
-		get_node("BlueCharge").set_text(str(blue_charge))	
+		get_node("BlueCharge").set_text(str(blue_charge))
 		pass
 
 func _input(event):
@@ -90,7 +92,7 @@ func _input(event):
 		get_node("PlayAgain").hide()
 		reset_arms()
 		game_state = "Game_Reset"
-	
+
 
 func reset_arms():
 	var blue_shoulder_node = get_node("Bluebot1/BluebotBody/BluebotShoulder");
@@ -117,13 +119,14 @@ func calculate_charge_winner():
 	else:
 		winner = "Blue"
 		blue_round_wins += 1
-		
+
 	print(winner)
+	play_sound("z")
 	if(winner == "Blue"):
 		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BluePunch")
 	else:
 		get_node("Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer").play("Punch")
-	
+
 	if(red_round_wins == 2):
 		show_win("Red")
 	elif(blue_round_wins == 2):
@@ -136,12 +139,12 @@ func show_win(colour):
 
 func _on_COUNT_finished():
 	game_state = "Intro"
-	
+
 func reset_game():
 	red_charge = 50
 	blue_charge = 50
-	
-	
+
+
 func _on_AnimationPlayer_finished():
 	if(game_state != "Restarting" && game_state != "Winning" && game_state != "New_Game_Request" && game_state != "Win Anims"):
 		print("setting game state to game_reset")
@@ -163,7 +166,7 @@ func _on_Winning_finished():
 	red_round_wins = 0;
 	blue_round_wins = 0;
 	get_node("PlayAgain").show()
-	
+
 
 
 func _on_COUNT_animation_started( name ):
