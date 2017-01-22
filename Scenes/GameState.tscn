@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=1]
+[gd_scene load_steps=34 format=1]
 
 [ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/hilltop.png" type="Texture" id=2]
@@ -22,6 +22,7 @@
 [ext_resource path="res://Assets/PNG/radial_under.png" type="Texture" id=20]
 [ext_resource path="res://Assets/PNG/radial_over.png" type="Texture" id=21]
 [ext_resource path="res://Assets/PNG/radial_progress.png" type="Texture" id=22]
+[ext_resource path="res://Fonts/Main_Font_Medium.fnt" type="BitmapFont" id=23]
 
 [sub_resource type="Animation" id=1]
 
@@ -77,7 +78,24 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.5, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.61817, 96.4932, 0.61817 ] }
 
-[sub_resource type="Animation" id=7]
+[sub_resource type="Animation" id=3]
+
+resource/name = "Win"
+length = 2.0
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.35, 2 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, 90.0, 0.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("RedbotForeArm:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.35, 2 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( -1.46671, 30.1583 ), Vector2( 21.4198, -0.354738 ), Vector2( -1.46671, 30.1583 ) ] }
+
+[sub_resource type="Animation" id=4]
 
 resource/name = "Shake"
 length = 0.1
@@ -89,9 +107,8 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 13.4266, -94.5746 ), Vector2( 13.4266, -86.5746 ), Vector2( 13.4266, -94.5746 ) ] }
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=5]
 
-resource/name = "BlueHit"
 length = 3.0
 loop = false
 step = 0.1
@@ -101,7 +118,7 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.5, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, -95.6485, 0.0 ] }
 
-[sub_resource type="Animation" id=4]
+[sub_resource type="Animation" id=6]
 
 length = 1.0
 loop = false
@@ -142,7 +159,24 @@ tracks/6/interp = 1
 tracks/6/imported = false
 tracks/6/keys = { "times":FloatArray( 0.3 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"take_damage" } ] }
 
-[sub_resource type="Animation" id=8]
+[sub_resource type="Animation" id=10]
+
+resource/name = "Win"
+length = 2.0
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.4, 2 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ -0.370133, -90.2336, -0.370133 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("BluebotForeArm:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.4, 2 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( -11.7674, 51.89 ), Vector2( -38.5497, 21.2408 ), Vector2( -11.7674, 51.89 ) ] }
+
+[sub_resource type="Animation" id=7]
 
 resource/name = "Shake"
 length = 0.1
@@ -154,9 +188,8 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0.224915, -88.2683 ), Vector2( 8.22491, -88.2683 ), Vector2( 0.224915, -88.2683 ) ] }
 
-[sub_resource type="Animation" id=5]
+[sub_resource type="Animation" id=8]
 
-resource/name = "MarkerWave"
 length = 5.0
 loop = false
 step = 0.1
@@ -171,9 +204,8 @@ tracks/1/interp = 1
 tracks/1/imported = false
 tracks/1/keys = { "times":FloatArray( 5 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"calculate_charge_winner" } ] }
 
-[sub_resource type="Animation" id=6]
+[sub_resource type="Animation" id=9]
 
-resource/name = "count"
 length = 2.0
 loop = false
 step = 0.05
@@ -253,12 +285,23 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[node name="Winning" type="AnimationPlayer" parent="Redbot/RedbotBody/RedbotShoulder"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Win = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
 [node name="ShakePlayer" type="AnimationPlayer" parent="Redbot/RedbotBody"]
 
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Shake = SubResource( 7 )
+anims/Shake = SubResource( 4 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -302,8 +345,19 @@ offset = Vector2( -4.19332, 33.8917 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/BlueHit = SubResource( 3 )
-anims/BluePunch = SubResource( 4 )
+anims/BlueHit = SubResource( 5 )
+anims/BluePunch = SubResource( 6 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="Winning" type="AnimationPlayer" parent="Bluebot1/BluebotBody/BluebotShoulder"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Win = SubResource( 10 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -314,19 +368,20 @@ autoplay = ""
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/Shake = SubResource( 8 )
+anims/Shake = SubResource( 7 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-
 [node name="Wave" type="Sprite" parent="."]
+
 transform/pos = Vector2( 512, 690 )
 texture = ExtResource( 15 )
 
 [node name="Table" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 512, 690 )
 texture = ExtResource( 16 )
 __meta__ = { "_edit_lock_":true }
@@ -351,7 +406,7 @@ texture = ExtResource( 17 )
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/MarkerWave = SubResource( 5 )
+anims/MarkerWave = SubResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
@@ -419,6 +474,7 @@ max_lines_visible = -1
 
 [node name="Countdown" type="Label" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -438,7 +494,7 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/count = SubResource( 6 )
+anims/count = SubResource( 9 )
 playback/active = true
 playback/speed = 0.5
 blend_times = [  ]
@@ -491,8 +547,31 @@ mode = 1
 radial_fill/fill_degrees = 360.0
 radial_fill/center_offset = Vector2( 0, 0 )
 
+[node name="PlayAgain" type="Label" parent="."]
+
+visibility/visible = false
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 162.0
+margin/top = 255.0
+margin/right = 896.0
+margin/bottom = 337.0
+custom_fonts/font = ExtResource( 23 )
+text = "Press Space to play again"
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+
 [connection signal="finished" from="Redbot/RedbotBody/RedbotShoulder/RedbotForeArm/RedbotFist/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
+
+[connection signal="finished" from="Redbot/RedbotBody/RedbotShoulder/Winning" to="." method="_on_Winning_finished"]
 
 [connection signal="finished" from="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
+[connection signal="finished" from="Bluebot1/BluebotBody/BluebotShoulder/Winning" to="." method="_on_Winning_finished"]
+
 [connection signal="finished" from="Countdown/COUNT" to="." method="_on_COUNT_finished"]
+
+
