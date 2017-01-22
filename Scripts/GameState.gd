@@ -5,9 +5,9 @@ extends Node2D
 # var b = "textvar"
 
 var red_goals = { 1: [
-Vector3(-170,-214,-85), 
-Vector3(0,-42,85),
-Vector3(170, 128,256)]}
+Vector3(-170,-128,-85), 
+Vector3(0,42,85),
+Vector3(170, 214,256)]}
 var blue_goals = {1:[
 Vector3(0,-214,-170), 
 Vector3(-85,-42,0),
@@ -73,6 +73,7 @@ func calc_attempt_blue(attempt_x):
 	var goal_array = blue_goals[game_round]
 	for hit in goal_array:
 		if(attempt_x >= hit.x && attempt_x < hit.z):
+			print(str(abs(hit.y - attempt_x)))
 			blue_attempts.append(abs(hit.y - attempt_x))
 		
 	pass
@@ -81,6 +82,7 @@ func calc_attempt_red(attempt_x):
 	var goal_array = red_goals[game_round]
 	for hit in goal_array:
 		if(attempt_x >= hit.x && attempt_x < hit.z):
+			print(str(abs(hit.y - attempt_x)))
 			red_attempts.append(abs(hit.y - attempt_x))
 		
 

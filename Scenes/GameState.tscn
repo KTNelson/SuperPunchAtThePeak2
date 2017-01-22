@@ -261,7 +261,7 @@ autoplay = ""
 
 [node name="Position2D" type="Position2D" parent="Table"]
 
-transform/pos = Vector2( 251.7, -1.97589 )
+transform/pos = Vector2( 42.706, -68.0604 )
 
 [node name="Position2D 2" type="Position2D" parent="Table"]
 
