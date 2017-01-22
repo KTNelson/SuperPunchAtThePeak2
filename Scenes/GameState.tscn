@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=1]
+[gd_scene load_steps=31 format=1]
 
 [ext_resource path="res://Scripts/GameState.gd" type="Script" id=1]
 [ext_resource path="res://Assets/PNG/hilltop.png" type="Texture" id=2]
@@ -77,6 +77,18 @@ tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.5, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.61817, 96.4932, 0.61817 ] }
 
+[sub_resource type="Animation" id=7]
+
+resource/name = "Shake"
+length = 0.1
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 13.4266, -94.5746 ), Vector2( 13.4266, -86.5746 ), Vector2( 13.4266, -94.5746 ) ] }
+
 [sub_resource type="Animation" id=3]
 
 resource/name = "BlueHit"
@@ -129,6 +141,18 @@ tracks/6/path = NodePath("../../../../../Redbot")
 tracks/6/interp = 1
 tracks/6/imported = false
 tracks/6/keys = { "times":FloatArray( 0.3 ), "transitions":FloatArray( 1 ), "values":[ { "args":[  ], "method":"take_damage" } ] }
+
+[sub_resource type="Animation" id=8]
+
+resource/name = "Shake"
+length = 0.1
+loop = false
+step = 0.05
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/pos")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = { "times":FloatArray( 0, 0.05, 0.1 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ Vector2( 0.224915, -88.2683 ), Vector2( 8.22491, -88.2683 ), Vector2( 0.224915, -88.2683 ) ] }
 
 [sub_resource type="Animation" id=5]
 
@@ -185,8 +209,7 @@ centered = false
 
 [node name="Redbot" type="Sprite" parent="."]
 
-editor/display_folded = true
-transform/pos = Vector2( 411.494, 511.225 )
+transform/pos = Vector2( 363.494, 511.225 )
 texture = ExtResource( 3 )
 script/script = ExtResource( 4 )
 
@@ -230,16 +253,26 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
+[node name="ShakePlayer" type="AnimationPlayer" parent="Redbot/RedbotBody"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Shake = SubResource( 7 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
 [node name="Bluebot1" type="Sprite" parent="."]
 
-editor/display_folded = true
-transform/pos = Vector2( 700.794, 511.264 )
+transform/pos = Vector2( 666.794, 511.264 )
 texture = ExtResource( 9 )
 script/script = ExtResource( 10 )
 
 [node name="BluebotBody" type="Sprite" parent="Bluebot1"]
 
-transform/pos = Vector2( 0.224915, -88.2683 )
+transform/pos = Vector2( 6.82093, -88.2683 )
 texture = ExtResource( 11 )
 offset = Vector2( 4.88617, -178.795 )
 
@@ -271,6 +304,17 @@ playback/default_blend_time = 0.0
 root/root = NodePath("..")
 anims/BlueHit = SubResource( 3 )
 anims/BluePunch = SubResource( 4 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = ""
+
+[node name="ShakePlayer" type="AnimationPlayer" parent="Bluebot1/BluebotBody"]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Shake = SubResource( 8 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

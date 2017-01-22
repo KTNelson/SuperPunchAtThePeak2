@@ -71,9 +71,11 @@ func _input(event):
 		if  (marker_y < 0):
 			add_charge("Red", 3)
 			add_charge("Blue", -3)
+			get_node("Redbot/RedbotBody/ShakePlayer").play("Shake")
 		else:
 			add_charge("Blue", 3)
 			add_charge("Red", -3)
+			get_node("Bluebot1/BluebotBody/ShakePlayer").play("Shake")
 
 func add_attempt():
 	#get marker y
