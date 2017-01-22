@@ -80,6 +80,11 @@ tracks/0/path = NodePath("../../..:transform/rot")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.5, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.61817, 96.4932, 0.61817 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../../..:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -2.57356, -3.67006 ), Vector2( 1.62223, 1.7495 ), Vector2( 1.27259, -2.09664 ), Vector2( -2.57355, 1.92433 ), Vector2( 0, 0 ) ] }
 
 [sub_resource type="Animation" id=3]
 
@@ -139,6 +144,11 @@ tracks/0/path = NodePath("../../..:transform/rot")
 tracks/0/interp = 1
 tracks/0/imported = false
 tracks/0/keys = { "times":FloatArray( 0, 0.5, 1.5 ), "transitions":FloatArray( 1, 1, 1 ), "update":0, "values":[ 0.0, -95.6485, 0.0 ] }
+tracks/1/type = "value"
+tracks/1/path = NodePath("../../../../..:transform/pos")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = { "times":FloatArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5 ), "transitions":FloatArray( 1, 1, 1, 1, 1, 1 ), "update":0, "values":[ Vector2( 0, 0 ), Vector2( -3.09176, -3.32958 ), Vector2( 2.14043, 2.37827 ), Vector2( 2.6161, -2.85392 ), Vector2( -3.09174, 1.66479 ), Vector2( 0, 0 ) ] }
 
 [sub_resource type="Animation" id=6]
 
@@ -372,6 +382,7 @@ texture = ExtResource( 9 )
 
 [node name="Bluebot1" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 700.794, 511.264 )
 texture = ExtResource( 10 )
 script/script = ExtResource( 11 )
@@ -560,6 +571,7 @@ max_lines_visible = -1
 
 [node name="Countdown" type="Label" parent="."]
 
+editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
