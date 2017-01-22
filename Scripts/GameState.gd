@@ -46,6 +46,8 @@ func play_sound(sound):
 		sp_node.play("Powerup")
 	elif(sound == "b"):
 		sp_node.play("Explosion4")
+	elif(sound =="z"):
+		sp_node.play("Blastwave_FX_ExplosionMetalDebris_HV.243")
 	pass
 	
 	
@@ -113,6 +115,7 @@ func calculate_charge_winner():
 		blue_round_wins += 1
 		
 	print(winner)
+	play_sound("z")
 	if(winner == "Blue"):
 		get_node("Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer").play("BluePunch")
 	else:
