@@ -14,8 +14,8 @@
 [ext_resource path="res://Assets/PNG/rightbot_shoulder.png" type="Texture" id=12]
 [ext_resource path="res://Assets/PNG/rightbot_forearm.png" type="Texture" id=13]
 [ext_resource path="res://Assets/PNG/rightbot_fist.png" type="Texture" id=14]
-[ext_resource path="res://Assets/PNG/track.png" type="Texture" id=15]
-[ext_resource path="res://Assets/PNG/wave_1.png" type="Texture" id=16]
+[ext_resource path="res://Assets/PNG/wave_1.png" type="Texture" id=15]
+[ext_resource path="res://Assets/PNG/track.png" type="Texture" id=16]
 [ext_resource path="res://Assets/PNG/marker.png" type="Texture" id=17]
 [ext_resource path="res://Fonts/Main_Font_Small.fnt" type="BitmapFont" id=18]
 [ext_resource path="res://Fonts/Main_Font_XLl.fnt" type="BitmapFont" id=19]
@@ -320,16 +320,25 @@ playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
 
-[node name="Table" type="Sprite" parent="."]
 
-editor/display_folded = true
+[node name="Wave" type="Sprite" parent="."]
 transform/pos = Vector2( 512, 690 )
 texture = ExtResource( 15 )
+
+[node name="Table" type="Sprite" parent="."]
+
+transform/pos = Vector2( 512, 690 )
+texture = ExtResource( 16 )
 __meta__ = { "_edit_lock_":true }
 
-[node name="Wave" type="Sprite" parent="Table"]
+[node name="Position2D" type="Position2D" parent="Table"]
 
-texture = ExtResource( 16 )
+transform/pos = Vector2( 42.706, -68.0604 )
+
+[node name="Position2D 2" type="Position2D" parent="Table"]
+
+transform/pos = Vector2( 8.29823, 0 )
+transform/scale = Vector2( 26.2881, 1 )
 __meta__ = { "_edit_lock_":true }
 
 [node name="Marker" type="Sprite" parent="Table"]
@@ -347,16 +356,6 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
-
-[node name="Position2D" type="Position2D" parent="Table"]
-
-transform/pos = Vector2( 42.706, -68.0604 )
-
-[node name="Position2D 2" type="Position2D" parent="Table"]
-
-transform/pos = Vector2( 8.29823, 0 )
-transform/scale = Vector2( 26.2881, 1 )
-__meta__ = { "_edit_lock_":true }
 
 [node name="RedCharge" type="Label" parent="."]
 
@@ -497,5 +496,3 @@ radial_fill/center_offset = Vector2( 0, 0 )
 [connection signal="finished" from="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
 [connection signal="finished" from="Countdown/COUNT" to="." method="_on_COUNT_finished"]
-
-
