@@ -8,7 +8,7 @@ func _ready():
 	# Called every time the node is added to the scene.
 	# Initialization here
 	set_process_input(true)
-	
+	get_node("SPlayer").play("intro16")
 	pass
 
 func _input(event):

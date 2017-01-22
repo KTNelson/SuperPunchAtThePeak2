@@ -46,6 +46,12 @@ func play_sound(sound):
 		sp_node.play("Powerup")
 	elif(sound == "b"):
 		sp_node.play("Explosion4")
+	elif(sound == "redbotwin"):
+		sp_node.play("redbotwins16")
+	elif(sound == "bluebotwin"):
+		sp_node.play("bluebotwins")
+	elif(sound == "321fight"): 
+		sp_node.play("321Fight16")
 	pass
 	
 	
@@ -146,8 +152,10 @@ func _on_AnimationPlayer_finished():
 		game_state = "Win Anims"
 		if(winner == "Red"):
 			get_node("Redbot/RedbotBody/RedbotShoulder/Winning").play("Win")
+			play_sound("redbotwin")
 		elif(winner == "Blue"):
 			get_node("Bluebot1/BluebotBody/BluebotShoulder/Winning").play("Win")
+			play_sound("bluebotwin")
 
 func _on_Winning_finished():
 	print("Winning finished")
@@ -156,3 +164,7 @@ func _on_Winning_finished():
 	blue_round_wins = 0;
 	get_node("PlayAgain").show()
 	
+
+
+func _on_COUNT_animation_started( name ):
+	play_sound("321fight")

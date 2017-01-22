@@ -277,13 +277,14 @@ __meta__ = { "_edit_ik_":true }
 [node name="RedbotShoulder" type="Sprite" parent="Redbot/RedbotBody"]
 
 transform/pos = Vector2( 17.4515, -126.853 )
+transform/rot = 90.4887
 texture = ExtResource( 6 )
 __meta__ = { "_edit_ik_":true }
 
 [node name="RedbotForeArm" type="Sprite" parent="Redbot/RedbotBody/RedbotShoulder"]
 
 editor/display_folded = true
-transform/pos = Vector2( -1, 30 )
+transform/pos = Vector2( 27.8298, -0.0395851 )
 transform/rot = 83.7811
 texture = ExtResource( 7 )
 offset = Vector2( 3.46884, 63.8226 )
@@ -522,7 +523,6 @@ max_lines_visible = -1
 
 [node name="Countdown" type="Label" parent="."]
 
-editor/display_folded = true
 focus/ignore_mouse = true
 focus/stop_mouse = true
 size_flags/horizontal = 2
@@ -632,6 +632,8 @@ stream/buffering_ms = 500
 [connection signal="finished" from="Bluebot1/BluebotBody/BluebotShoulder/BluebotForeArm/BluebotFist/AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
 [connection signal="finished" from="Bluebot1/BluebotBody/BluebotShoulder/Winning" to="." method="_on_Winning_finished"]
+
+[connection signal="animation_started" from="Countdown/COUNT" to="." method="_on_COUNT_animation_started"]
 
 [connection signal="finished" from="Countdown/COUNT" to="." method="_on_COUNT_finished"]
 
